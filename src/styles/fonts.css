@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'gemunu'; /* Replace with your actual font name */
+  src:
+    local('gemunu'),
+    url('../../public/fonts/Gemunu\ Libre\ Medium.woff') format('woff'),
+    url('../../public/fonts/Gemunu\ Libre\ Medium.woff2') format('woff2');
+}
