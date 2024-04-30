@@ -47,6 +47,16 @@ const FormSchema = z.object({
 
 export default function Home() {
   const [value, setValue] = useState("");
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+    },
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    window.alert(`Submitted ${data.username}`);
+  }
   return (
     <main className="main-container flex flex-col justify-center gap-5 p-5">
       <h1 className=" font-gemunu">Test App</h1>
@@ -64,29 +74,55 @@ export default function Home() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form>
-                <div className="grid w-full items-center gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Name of your project" />
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="mt-5 w-2/3 space-y-6"
+                >
+                  <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" placeholder="Name of your project" />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="framework">Framework</Label>
+                      <Select>
+                        <SelectTrigger id="framework">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent position="popper">
+                          <SelectItem value="next">Next.js</SelectItem>
+                          <SelectItem value="sveltekit">SvelteKit</SelectItem>
+                          <SelectItem value="astro">Astro</SelectItem>
+                          <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="framework">Framework</Label>
-                    <Select>
-                      <SelectTrigger id="framework">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        <SelectItem value="next">Next.js</SelectItem>
-                        <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                        <SelectItem value="astro">Astro</SelectItem>
-                        <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <Input placeholder="shadcn" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          This is your public display name.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex justify-between">
+                    <Button variant="test" onClick={() => form.reset()}>
+                      Cancel
+                    </Button>
+                    <Button type="submit">Submit</Button>
                   </div>
-                </div>
-              </form>
-              <InputForm />
+                </form>
+              </Form>
             </CardContent>
           </Card>
         </TabsContent>
@@ -95,7 +131,7 @@ export default function Home() {
             <CardHeader>
               <CardTitle>Password</CardTitle>
               <CardDescription>
-                Change your password here. After saving, you'll be logged out.
+                Change your password here. After saving, you will be logged out.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -142,50 +178,5 @@ export default function Home() {
         </TabsContent>
       </Tabs>
     </main>
-  );
-}
-
-export function InputForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      username: "",
-    },
-  });
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    window.alert(`Submitted ${data.username}`);
-  }
-
-  return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-5 w-2/3 space-y-6"
-      >
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex justify-between">
-          <Button variant="test" onClick={() => form.reset()}>
-            Cancel
-          </Button>
-          <Button type="submit">Submit</Button>
-        </div>
-      </form>
-    </Form>
   );
 }

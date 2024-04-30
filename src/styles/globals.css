@@ -68,35 +68,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-.gradient-text {
-  @apply bg-gradient-to-br from-red-600 to-indigo-600 bg-clip-text text-center text-transparent;
-}
-
-.login-form {
-  @apply flex flex-grow flex-col justify-center;
-}
-
-.form-label {
-  @apply text-sm font-bold 2xl:text-3xl;
-}
-
-.form-input {
-  @apply text-sm  2xl:h-16 2xl:text-2xl;
-}
-
-.forgot-password-link {
-  @apply mt-[-18px] self-end text-xs text-blue-800 underline underline-offset-2 xl:mt-[-30px] xl:text-[14px];
-}
-
 /* .bg-primary {
   @apply font-gemunu bg-green-700 text-white hover:bg-yellow-400;
 } */

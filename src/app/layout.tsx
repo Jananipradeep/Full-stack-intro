@@ -1,43 +1,37 @@
-import type { Metadata } from "next";
-import { Lato } from "next/font/google";
-import "@/styles/globals.css";
+import React, { ReactNode } from "react";
+import Head from "next/head";
 import { cn } from "@/lib/utils";
-import localFonts from "next/font/local";
 import "../styles/fonts.css";
+import "../styles/globals.css";
+import { gemunu } from "@/lib/fonts";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Test App",
   description: "This is a test app",
 };
 
-export const lato = Lato({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-lato",
-});
+type LayoutProps = {
+  children: ReactNode;
+};
 
-export const gemunu = localFonts({
-  src: "../../public/fonts/GemunuLibre-Medium.ttf",
-  variable: "--font-gemunu",
-  weight: "500",
-});
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        {/* Add any other required head elements */}
+      </Head>
       <body
         className={cn(
-          "font-gemunu h-full bg-background antialiased",
-          gemunu.variable,
-          lato.variable
+          "min-h-screen bg-background font-gemunu antialiased",
+          gemunu.variable
         )}
       >
         {children}
       </body>
     </html>
   );
-}
+};
+
+export default Layout;
