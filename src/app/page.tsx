@@ -83,6 +83,11 @@ export default function Home() {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     window.alert(`Submitted ${data.username}`);
   }
+
+  function onLogin(data: LoginForm) {
+    window.alert(`Submitted ${data}`);
+  }
+
   return (
     <main className="main-container flex flex-col justify-center gap-5 p-5">
       <h1 className=" font-gemunu">Test App</h1>
@@ -203,19 +208,25 @@ export default function Home() {
                 )}
               </div>
 
-              <CommonFormField
-                control={methods.control}
-                name="email"
-                type="text"
-                placeholder="Enter Email Address"
-              />
+              <Form {...methods}>
+                <form onSubmit={methods.handleSubmit(onLogin)}>
+                  <div className="space-y-2">
+                    <CommonFormField
+                      control={methods.control}
+                      name="email"
+                      type="text"
+                      placeholder="Enter Email Address"
+                    />
 
-              <CommonFormField
-                control={methods.control}
-                name="password"
-                type="password"
-                placeholder="Enter Password"
-              />
+                    <CommonFormField
+                      control={methods.control}
+                      name="password"
+                      type="password"
+                      placeholder="Enter Password"
+                    />
+                  </div>
+                </form>
+              </Form>
             </CardContent>
             <CardFooter>
               <Button>Save password</Button>
