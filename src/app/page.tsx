@@ -207,26 +207,6 @@ export default function Home() {
                   <>You entered: {value}</>
                 )}
               </div>
-
-              <Form {...methods}>
-                <form onSubmit={methods.handleSubmit(onLogin)}>
-                  <div className="space-y-2">
-                    <CommonFormField
-                      control={methods.control}
-                      name="email"
-                      type="text"
-                      placeholder="Enter Email Address"
-                    />
-
-                    <CommonFormField
-                      control={methods.control}
-                      name="password"
-                      type="password"
-                      placeholder="Enter Password"
-                    />
-                  </div>
-                </form>
-              </Form>
             </CardContent>
             <CardFooter>
               <Button>Save password</Button>
@@ -234,6 +214,25 @@ export default function Home() {
           </Card>
         </TabsContent>
       </Tabs>
+      <Form {...methods}>
+        <form onSubmit={methods.handleSubmit(onLogin)}>
+          <div className="space-y-2">
+            <CommonFormField
+              control={methods.control}
+              name="email"
+              type="text"
+              placeholder="Enter Email Address"
+            />
+
+            <CommonFormField
+              control={methods.control}
+              name="password"
+              type="password"
+              placeholder="Enter Password"
+            />
+          </div>
+        </form>
+      </Form>
     </main>
   );
 }
