@@ -51,7 +51,7 @@ interface LoginForm {
   password: string;
 }
 
-export const LoginFormSchema = z.object({
+const LoginFormSchema = z.object({
   email: z
     .string()
     .min(1, {
