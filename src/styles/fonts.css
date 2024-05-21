@@ -1,7 +1,33 @@
 @font-face {
-  font-family: 'gemunu'; /* Replace with your actual font name */
-  src:
-    local('gemunu'),
-    url('../../public/fonts/Gemunu\ Libre\ Medium.woff') format('woff'),
-    url('../../public/fonts/Gemunu\ Libre\ Medium.woff2') format('woff2');
+  font-family: "gemunu";
+  src: local("gemunu"),
+    url("../../public/fonts/Gemunu\ Libre\ Medium.woff") format("woff"),
+    url("../../public/fonts/Gemunu\ Libre\ Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "johnieWalker1";
+  src: local("johnieWalker1"),
+    url("../../public/fonts/johnnie-walker-caps-sans/book/JWCAPSSANS-Book.woff")
+      format("woff"),
+    url("../../public/fonts/johnnie-walker-caps-sans/book/JWCAPSSANS-Book.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "johnieWalker2";
+  src: local("johnieWalker2"),
+    url("../../public/fonts/johnnie-walker-caps-sans/bold/JWCAPSSANS-Bold.woff")
+      format("woff"),
+    url("../../public/fonts/johnnie-walker-caps-sans/bold/JWCAPSSANS-Bold.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "johnieWalker3";
+  src: local("johnieWalker3"),
+    url("../../public/fonts/johnnie-walker-caps-sans/medium/JWCAPSSANS-Medium.woff")
+      format("woff"),
+    url("../../public/fonts/johnnie-walker-caps-sans/medium/JWCAPSSANS-Medium.woff2")
+      format("woff2");
 }

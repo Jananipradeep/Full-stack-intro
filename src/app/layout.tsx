@@ -3,7 +3,12 @@ import Head from "next/head";
 import { cn } from "@/lib/utils";
 import "../styles/fonts.css";
 import "../styles/globals.css";
-import { gemunu } from "@/lib/fonts";
+import {
+  gemunu,
+  johnieWalker1,
+  johnieWalker2,
+  johnieWalker3,
+} from "@/lib/fonts";
 
 export const metadata = {
   title: "Test App",
@@ -24,8 +29,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </Head>
       <body
         className={cn(
-          "min-h-screen bg-background font-gemunu antialiased",
-          gemunu.variable
+          "min-h-screen bg-background antialiased",
+          gemunu.variable,
+          johnieWalker1.variable,
+          johnieWalker2.variable,
+          johnieWalker3.variable
         )}
       >
         {children}

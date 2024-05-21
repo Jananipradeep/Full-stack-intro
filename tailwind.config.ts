@@ -1,3 +1,4 @@
+import { johnieWalker1 } from "@/lib/fonts";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -21,6 +22,9 @@ const config = {
       fontFamily: {
         lato: "var(--font-lato)",
         gemunu: "var(--font-gemunu)",
+        johnieWalker1: "var(--font-johnnieWalker-normal)",
+        johnieWalker2: "var(--font-johnnieWalker-bold)",
+        johnieWalker3: "var(--font-johnnieWalker-medium)",
       },
       colors: {
         border: "hsl(var(--border))",

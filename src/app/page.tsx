@@ -38,10 +38,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
+import CommonFormField from "@/components/components/CommonFormField";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
+  }),
+});
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
+
+export const LoginFormSchema = z.object({
+  email: z
+    .string()
+    .min(1, {
+      message: "Email required",
+    })
+    .email("Enter valid email"),
+  password: z.string().min(1, {
+    message: "Password required",
   }),
 });
 
@@ -54,6 +72,14 @@ export default function Home() {
     },
   });
 
+  const methods = useForm<LoginForm>({
+    resolver: zodResolver(LoginFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     window.alert(`Submitted ${data.username}`);
   }
@@ -62,14 +88,20 @@ export default function Home() {
       <h1 className=" font-gemunu">Test App</h1>
       <Tabs defaultValue="account" className="w-[800px]">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
+          <TabsTrigger value="account" className="font-johnieWalker2">
+            Account
+          </TabsTrigger>
+          <TabsTrigger value="password" className="font-johnieWalker2">
+            Password
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="account">
           <Card>
             <CardHeader>
-              <CardTitle>Create project</CardTitle>
-              <CardDescription>
+              <CardTitle className="font-johnieWalker3">
+                Create project
+              </CardTitle>
+              <CardDescription className="font-johnieWalker1">
                 Deploy your new project in one-click.
               </CardDescription>
             </CardHeader>
@@ -77,7 +109,7 @@ export default function Home() {
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="mt-5 w-2/3 space-y-6"
+                  className="mt-5 w-2/3 space-y-6 font-gemunu"
                 >
                   <div className="grid w-full items-center gap-4">
                     <div className="flex flex-col space-y-1.5">
@@ -170,6 +202,20 @@ export default function Home() {
                   <>You entered: {value}</>
                 )}
               </div>
+
+              <CommonFormField
+                control={methods.control}
+                name="email"
+                type="text"
+                placeholder="Enter Email Address"
+              />
+
+              <CommonFormField
+                control={methods.control}
+                name="password"
+                type="password"
+                placeholder="Enter Password"
+              />
             </CardContent>
             <CardFooter>
               <Button>Save password</Button>
